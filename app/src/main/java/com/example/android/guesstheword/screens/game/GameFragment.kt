@@ -62,7 +62,8 @@ class GameFragment : Fragment() {
         viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer { isFinished ->
             if (isFinished){
                 val currentScore = viewModel.score.value ?: 0
-                val action = GameFragmentDirections.actionGameToScore(currentScore)
+                val currentWordSize:String = viewModel.wordSize.value.toString()
+                val action = GameFragmentDirections.actionGameToScore(currentScore,currentWordSize)
                 findNavController(this).navigate(action)
                 viewModel.onGameFinishComplete()
             }
